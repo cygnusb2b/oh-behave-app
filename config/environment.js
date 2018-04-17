@@ -4,7 +4,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'oh-behave-app',
     environment,
-    rootURL: '/',
+    rootURL: '/manage',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

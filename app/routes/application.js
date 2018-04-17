@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import LoadingMixin from 'oh-behave-app/mixins/loading-mixin';
 
-export default Route.extend({
+export default Route.extend(LoadingMixin, {
   actions: {
     /**
      *

@@ -26,9 +26,27 @@ form .progress {
   height: 0.3rem;
 }
 
+.card.list-index {
+  box-shadow: $z-depth-1;
+  border: none !important;
+}
+
+.card.model-form {
+  box-shadow: $z-depth-1;
+  border: none !important;
+}
+
 .modal-content {
   border: 0;
   box-shadow: $z-depth-3;
+}
+
+.fixed-bottom.create {
+  left: inherit;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  box-shadow: $z-depth-1-half;
 }
 
 .mnh-100 {

@@ -1,0 +1,21 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}Users{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+{{#paginate-models
+  models=model
+  routeName='users.index'
+  totalCount=totalCount
+  hasNextPage=hasNextPage
+  endCursor=endCursor
+  first=first
+  after=after
+  ascending=ascending
+  sortBy=sortBy
+  sortOptions=sortOptions
+  as |model|
+}}
+  {{partial 'users/list'}}
+{{/paginate-models}}
+
+{{model-create-button icon="user" title="Create User" click=(route-action "transitionTo" "users.create")}}

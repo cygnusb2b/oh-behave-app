@@ -42,11 +42,13 @@ export default Component.extend({
         return;
       }
       this.set('isShowing', true);
+      // eslint-disable-next-line ember/closure-actions
       this.sendAction('onShowing')
       const instance = this.$();
       instance.on('shown.bs.modal', () => {
         this.set('isShowing', false);
         this.set('isShown', true);
+        // eslint-disable-next-line ember/closure-actions
         this.sendAction('onShown');
       });
 
@@ -76,6 +78,7 @@ export default Component.extend({
       instance.on('hidden.bs.modal', () => {
         if (!this.get('isDestroyed')) {
           this.set('isHidden', true);
+          // eslint-disable-next-line ember/closure-actions
           this.sendAction('onHidden');
           this.set('show', false);
         }

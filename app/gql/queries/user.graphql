@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/user'
+
+query user($input: ModelIdInput!) {
+  user(input: $input) {
+    ...UserFragment
+  }
+}

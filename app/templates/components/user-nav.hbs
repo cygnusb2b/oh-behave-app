@@ -1,0 +1,56 @@
+{{#if session.isAuthenticated}}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button">
+      {{entypo-icon "cog"}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+
+      <a class="dropdown-item" href="javascript:void(0)" {{action "displayUpdateProfile"}}>
+        {{entypo-icon "user"}} {{user.model.givenName}} {{user.model.familyName}}
+      </a>
+      <a class="dropdown-item" href="javascript:void(0)" title="Change Password" {{action "displayChangePassword"}}>
+        {{entypo-icon "key"}} Change Password
+      </a>
+
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="javascript:void(0)" title="Logout" {{action "logout"}}>
+        {{entypo-icon "log-out"}} Logout
+      </a>
+    </div>
+  </li>
+
+  {{#bs-modal show=isUpdateProfileOpen as |modal|}}
+    <form {{action "saveProfile" on="submit"}}>
+      {{#modal.header}}
+        <h5 class="modal-title">Update Profile</h5>
+        <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+          {{entypo-icon "cross"}}
+        </button>
+      {{/modal.header}}
+
+      {{#modal.body}}
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="name">First Name</label>
+              {{input class="form-control" value=user.model.givenName}}
+            </div>
+            <div class="form-group">
+              <label for="name">Last Name</label>
+              {{input class="form-control" value=user.model.familyName}}
+            </div>
+          </div>
+        </div>
+      {{/modal.body}}
+
+      {{#modal.footer}}
+        <button class="btn btn-success">
+          {{entypo-icon "check"}} Save
+        </button>
+      {{/modal.footer}}
+    </form>
+  {{/bs-modal}}
+
+  {{change-password-modal isChangePasswordOpen=isChangePasswordOpen model=user.model}}
+
+{{/if}}

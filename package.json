@@ -13,7 +13,7 @@
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js app config lib server tests",
-    "start": "ember serve",
+    "start": "ember s --proxy=http://localhost:8266 --port=4205",
     "test": "ember test"
   },
   "devDependencies": {
@@ -43,6 +43,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "^7.6.0",
+    "ember-notify": "^5.2.1",
     "ember-power-calendar": "^0.7.2",
     "ember-power-select": "^2.0.0-beta.3",
     "ember-resolver": "^4.0.0",

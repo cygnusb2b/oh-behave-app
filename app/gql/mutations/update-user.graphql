@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/user'
+
+mutation updateUser($input: UpdateUserInput!) {
+	updateUser(input: $input) {
+    ...UserFragment
+	}
+}

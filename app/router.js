@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('property', { path: ':key' }, function() {
 
   });
+  this.route('login');
 });
 
 export default Router;

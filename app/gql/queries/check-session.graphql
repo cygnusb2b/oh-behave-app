@@ -1,0 +1,9 @@
+#import 'oh-behave-app/gql/fragments/session'
+
+query checkSession($input: SessionTokenInput!) {
+  checkSession(input: $input) {
+    session {
+			...SessionFragment
+		}
+  }
+}

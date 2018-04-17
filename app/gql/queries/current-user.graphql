@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/user'
+
+query currentUser {
+  currentUser {
+    ...UserFragment
+  }
+}

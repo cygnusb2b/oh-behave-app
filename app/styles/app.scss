@@ -1,0 +1,40 @@
+@import "node_modules/bootswatch/dist/simplex/variables";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootswatch/dist/simplex/bootswatch";
+
+@import "ember-power-select/themes/bootstrap";
+@import "ember-power-select";
+@import "ember-power-calendar";
+
+@import "z-depth";
+
+// Ember link actions, or explicitally clickable.
+a[data-ember-action]:not(:disabled),
+.clickable {
+    cursor: pointer;
+}
+
+// Form footer progress bars.
+form .progress {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+// The primary loading progress bar, found below nav.
+.loading.progress {
+  border-radius: 0 !important;
+  height: 0.3rem;
+}
+
+.modal-content {
+  border: 0;
+  box-shadow: $z-depth-3;
+}
+
+.mnh-100 {
+  min-height: 100%;
+}
+
+.mnw-100 {
+  min-width: 100%;
+}

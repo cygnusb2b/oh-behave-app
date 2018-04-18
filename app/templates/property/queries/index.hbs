@@ -1,0 +1,4 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "property.index"}}{{model.property.name}}{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}Queries{{/crumbs.item}}
+{{/nav-breadcrumbs}}

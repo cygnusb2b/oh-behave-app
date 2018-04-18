@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/taxonomy'
+
+query searchTaxonomy($property: String!, $phrase: String!) {
+  searchTaxonomy(property: $property, phrase: $phrase) {
+    ...TaxonomyFragment
+  }
+}

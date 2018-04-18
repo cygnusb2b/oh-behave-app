@@ -1,0 +1,4 @@
+fragment CompanyFragment on Company {
+  id
+  name
+}

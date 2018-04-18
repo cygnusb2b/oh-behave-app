@@ -1,0 +1,5 @@
+fragment TaxonomyFragment on Taxonomy {
+  id
+  name
+  type
+}

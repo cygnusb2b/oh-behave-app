@@ -1,0 +1,9 @@
+fragment PropertyFragment on Property {
+  id
+  name
+  key
+  baseVersion
+  userSource
+  createdAt
+  updatedAt
+}

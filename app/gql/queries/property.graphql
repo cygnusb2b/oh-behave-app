@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/property'
+
+query property($input: ModelIdInput!) {
+  property(input: $input) {
+    ...PropertyFragment
+  }
+}

@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label for="property.name">Name</label>
+      {{input
+        type="text"
+        required=true
+        value=model.name
+        class="form-control form-control-lg"
+        id="property.name"
+        aria-describedby="property.name.help"
+        placeholder="e.g. Vehicle Service Pros"
+      }}
+      <small id="property.name.help" class="form-text text-muted">The property/website name.</small>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <div class="form-group">
+      <label for="property.key">Account+Group Key</label>
+      {{input
+        type="text"
+        required=true
+        value=model.key
+        class="form-control"
+        id="property.key"
+        aria-describedby="property.key.help"
+        placeholder="e.g. cygnus_vspc"
+      }}
+      <small id="property.key.help" class="form-text text-muted">The unique property key name. Used for querying.</small>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="form-group">
+      <label for="property.baseVersion">Base Version</label>
+      {{#power-select
+        options=sourceManager.baseVersions
+        selected=model.baseVersion
+        closeOnSelect=true
+        searchEnabled=false
+        onchange=(action (mut model.baseVersion)) as |opt|}}
+          {{opt}}
+      {{/power-select}}
+      <small id="property.baseVersion.help" class="form-text text-muted">Select the version of Base used by this property.</small>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="form-group">
+      <label for="property.userSource">User Source</label>
+      {{#power-select
+        options=sourceManager.userSources
+        selected=model.userSource
+        closeOnSelect=true
+        searchEnabled=false
+        onchange=(action (mut model.userSource)) as |opt|}}
+          {{opt}}
+      {{/power-select}}
+      <small id="property.userSource.help" class="form-text text-muted">Select the source for user data.</small>
+    </div>
+  </div>
+</div>

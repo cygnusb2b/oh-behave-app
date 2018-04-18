@@ -1,0 +1,3 @@
+mutation deleteProperty($input: ModelIdInput!) {
+	deleteProperty(input: $input)
+}

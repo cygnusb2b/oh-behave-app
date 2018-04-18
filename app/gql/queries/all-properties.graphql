@@ -1,0 +1,17 @@
+#import 'oh-behave-app/gql/fragments/property'
+
+query allProperties($pagination: PaginationInput, $sort: PropertySortInput) {
+  allProperties(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...PropertyFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

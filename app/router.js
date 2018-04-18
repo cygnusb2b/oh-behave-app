@@ -7,11 +7,15 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('property', { path: ':key' }, function() {
+  this.route('property', { path: ':id' }, function() {
 
   });
   this.route('login');
   this.route('users', function() {
+    this.route('create');
+    this.route('edit', { path: ':id' });
+  });
+  this.route('properties', function() {
     this.route('create');
     this.route('edit', { path: ':id' });
   });

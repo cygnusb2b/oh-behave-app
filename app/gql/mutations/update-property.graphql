@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/property'
+
+mutation updateProperty($input: UpdatePropertyInput!) {
+	updateProperty(input: $input) {
+    ...PropertyFragment
+	}
+}

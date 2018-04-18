@@ -1,10 +1,10 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item active=true}}Users{{/crumbs.item}}
+  {{#crumbs.item active=true}}Properties{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
 {{#paginate-models
   models=model
-  routeName='users.index'
+  routeName='properties.index'
   totalCount=totalCount
   hasNextPage=hasNextPage
   endCursor=endCursor
@@ -15,5 +15,5 @@
   sortOptions=sortOptions
   as |model|
 }}
-  {{partial 'users/list'}}
+  {{partial 'properties/list'}}
 {{/paginate-models}}

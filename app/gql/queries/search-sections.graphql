@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/section'
+
+query searchSections($property: String!, $phrase: String!) {
+  searchSections(property: $property, phrase: $phrase) {
+    ...SectionFragment
+  }
+}

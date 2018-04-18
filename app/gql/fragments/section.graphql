@@ -1,0 +1,5 @@
+fragment SectionFragment on Section {
+  id
+  name
+  alias
+}

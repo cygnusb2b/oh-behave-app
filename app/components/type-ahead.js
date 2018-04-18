@@ -6,6 +6,7 @@ import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-ma
 
 import searchTaxonomy from 'oh-behave-app/gql/queries/search-taxonomy';
 import searchCompanies from 'oh-behave-app/gql/queries/search-companies';
+import searchSections from 'oh-behave-app/gql/queries/search-sections';
 
 export default Component.extend(ComponentQueryManager, {
 
@@ -27,6 +28,8 @@ export default Component.extend(ComponentQueryManager, {
         return { query: searchTaxonomy, resultKey: 'searchTaxonomy' };
       case 'company':
         return { query: searchCompanies, resultKey: 'searchCompanies' };
+      case 'section':
+        return { query: searchSections, resultKey: 'searchSections' };
     }
     this.get('graphErrors').show(new Error(`The model type ${type} is not searchable.`));
   }),

@@ -45,9 +45,27 @@
         multiple=true
         closeOnSelect=false
         selected=model.company as |item|}}
-        <span class="font-weight-bold">{{item.name}}</span> <span class="text-muted">[{{item.id}}]</span>
+        <span class="font-weight-bold">{{item.name}}</span><span class="text-muted">[{{item.id}}]</span>
       {{/type-ahead}}
       <small id="query.company.help" class="form-text text-muted">Companies for this query.</small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label for="query.section">Sections</label>
+      {{#type-ahead
+        property=model.property.key
+        placeholder="Begin typing to find a section..."
+        type="section"
+        multiple=true
+        closeOnSelect=false
+        selected=model.section as |item|}}
+        <span class="font-weight-bold">{{item.name}}</span> ({{item.alias}}) <span class="text-muted">[{{item.id}}]</span>
+      {{/type-ahead}}
+      <small id="query.section.help" class="form-text text-muted">Sections for this query.</small>
     </div>
   </div>
 </div>

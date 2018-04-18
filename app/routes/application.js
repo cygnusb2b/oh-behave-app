@@ -4,11 +4,24 @@ import LoadingMixin from 'oh-behave-app/mixins/loading-mixin';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 
+import allProperties from 'oh-behave-app/gql/queries/all-properties';
+
 export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManager, {
   session: inject(),
 
   beforeModel() {
     return this._loadCurrentUser();
+  },
+
+  model() {
+    const query = allProperties;
+    const pagination = { first: 100 };
+    const sort = { field: 'name', order: 11 };
+    const variables = { pagination, sort };
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allProperties')
+      .then(paginated => paginated.edges.map(edge => edge.node))
+      .catch(e => this.get('graphErrors').show(e))
+    ;
   },
 
   sessionAuthenticated() {

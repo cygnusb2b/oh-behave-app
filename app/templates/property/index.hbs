@@ -1,1 +1,3 @@
-{{outlet}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}{{model.name}}{{/crumbs.item}}
+{{/nav-breadcrumbs}}

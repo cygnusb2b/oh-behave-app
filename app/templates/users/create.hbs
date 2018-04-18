@@ -1,5 +1,5 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item}}{{#link-to "users.index"}}Users{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "users.index"}}{{entypo-icon "users"}} Users{{/link-to}}{{/crumbs.item}}
   {{#crumbs.item active=true}}Create New{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
@@ -9,7 +9,7 @@
     <div class="card-body">
       {{ partial "users/form" }}
 
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-sm-6">
           <div class="form-group mb-3 mb-sm-0">
             <label for="password">Password</label>

@@ -26,6 +26,17 @@ form .progress {
   height: 0.3rem;
 }
 
+// Add styling to ember-notify alerts
+.ember-notify.alert {
+  box-shadow: $z-depth-2;
+  border: none !important;
+}
+
+.dropdown-menu {
+  box-shadow: $z-depth-2;
+  border: none !important;
+}
+
 .card.list-index {
   box-shadow: $z-depth-1;
   border: none !important;

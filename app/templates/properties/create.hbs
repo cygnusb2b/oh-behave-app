@@ -10,7 +10,7 @@
       {{ partial "properties/form" }}
     </div>
     <div class="card-footer">
-      {{model-save-button}}
+      {{model-save-button disabled=loadingDisplay.isShowing}}
     </div>
   </div>
 </form>

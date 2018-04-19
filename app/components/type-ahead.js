@@ -18,6 +18,7 @@ export default Component.extend(ComponentQueryManager, {
   timeout: 600,
   type: null,
 
+  disabled: false,
   selected: null,
   placeholder: null,
 

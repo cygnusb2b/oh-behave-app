@@ -1,0 +1,23 @@
+fragment ContentQueryFragment on ContentQuery {
+  id
+  name
+  criteria {
+    type
+    items {
+      ... on Taxonomy {
+        id
+        name
+        type
+      }
+      ... on Section {
+        id
+        name
+        alias
+      }
+      ... on Company {
+        id
+        name
+      }
+    }
+  }
+}

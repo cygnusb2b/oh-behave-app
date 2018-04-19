@@ -5,7 +5,7 @@
 {{/nav-breadcrumbs}}
 
 
-<form {{action (route-action "create" model) on="submit"}}>
+<form {{action (route-action "create" model.query) on="submit"}}>
   <div class="card model-form">
     <div class="card-header"></div>
     <div class="card-body">

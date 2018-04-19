@@ -1,0 +1,65 @@
+{{#basic-dropdown as |dropdown|}}
+  <button class="btn btn-primary dropdown-toggle" disabled={{disabled}} data-ebd-id="{{dropdown.uniqueId}}-trigger" {{action dropdown.actions.toggle}}>
+    {{entypo-icon "calendar"}}
+    {{#if range.start}}
+      {{moment-format range.start "MMMM Do, YYYY"}}
+    {{else}}
+      Select Start Month
+    {{/if}}
+  </button>
+  {{#dropdown.content}}
+    <div class="card border-0 z-depth-1">
+      <div class="card-body">
+        {{#power-calendar
+          center=range.start
+          onCenterChange=(action "setStart" value="moment") as |calendar|}}
+
+          <nav class="ember-power-calendar-nav">
+            <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -1 'month'}}>‹</button>
+            <div class="ember-power-calendar-nav-title">
+              {{moment-format calendar.center 'MMMM YYYY'}}
+            </div>
+            {{#if (lt range.start nowStartOf)}}
+              <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 1 'month'}}>›</button>
+            {{/if}}
+          </nav>
+
+        {{/power-calendar}}
+      </div>
+    </div>
+  {{/dropdown.content}}
+{{/basic-dropdown}}
+
+{{#basic-dropdown as |dropdown|}}
+  <button class="btn btn-primary dropdown-toggle" disabled={{disabled}} data-ebd-id="{{dropdown.uniqueId}}-trigger" {{action dropdown.actions.toggle}}>
+    {{entypo-icon "calendar"}}
+    {{#if range.end}}
+      {{moment-format range.end "MMMM Do, YYYY"}}
+    {{else}}
+      Select End Month
+    {{/if}}
+  </button>
+  {{#dropdown.content}}
+    <div class="card border-0 z-depth-1">
+      <div class="card-body">
+        {{#power-calendar
+          center=range.end
+          onCenterChange=(action "setEnd" value="moment") as |calendar|}}
+
+          <nav class="ember-power-calendar-nav">
+            {{#if (gt range.end startEndOf)}}
+              <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -1 'month'}}>‹</button>
+            {{/if}}
+            <div class="ember-power-calendar-nav-title">
+              {{moment-format calendar.center 'MMMM YYYY'}}
+            </div>
+            {{#if (lt range.end nowStartOf)}}
+              <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 1 'month'}}>›</button>
+            {{/if}}
+          </nav>
+
+        {{/power-calendar}}
+      </div>
+    </div>
+  {{/dropdown.content}}
+{{/basic-dropdown}}

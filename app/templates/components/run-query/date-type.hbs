@@ -1,0 +1,8 @@
+<button disabled={{disabled}} class="btn btn-primary dropdown-toggle" type="button" id="query.date-type.dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  {{#if dateType}}Date Type: {{dateType}}{{else}}Select Date Type{{/if}}
+</button>
+<div class="dropdown-menu" aria-labelledby="query.date-type.dropdown">
+  {{#each filteredDateTypes as |type|}}
+    <a class="dropdown-item" href="javascript:void(0);" {{action "setType" type}}>{{type}}</a>
+  {{/each}}
+</div>

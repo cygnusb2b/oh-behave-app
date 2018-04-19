@@ -10,4 +10,9 @@ export default Component.extend({
     return this.get('index') + 1;
   }),
 
+  targetId: computed(function() {
+    const ts = Date.now();
+    return `${ts}`;
+  }),
+
 });

@@ -10,7 +10,7 @@
     {{/power-select}}
   </div>
 
-  <div class="form-group mb-0">
+  <div class="form-group">
     {{#type-ahead
       property=propertyKey
       placeholder="Begin typing to search..."
@@ -32,5 +32,13 @@
     {{/type-ahead}}
     <small class="form-text text-muted">All selections in this group are treated as "ORs."</small>
   </div>
+
+  {{confirm-button
+    icon="cross"
+    label="Remove"
+    class="btn-danger"
+    disabled=loadingDisplay.isShowing
+    onConfirm=(action destroy)
+  }}
 
 </div>

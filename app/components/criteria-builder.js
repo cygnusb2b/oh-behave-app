@@ -13,8 +13,8 @@ export default Component.extend({
     add() {
       this.get('criteria').pushObject({ type: '', items: [], new: true });
     },
-    remove(index) {
-      this.get('criteria').removeAt(index);
+    remove(model) {
+      this.get('criteria').removeObject(model);
     },
   },
 });

@@ -1,0 +1,12 @@
+fragment ContentQueryListFragment on ContentQuery {
+  id
+  name
+  createdAt
+  updatedAt
+  createdBy {
+    id
+    givenName
+    familyName
+    email
+  }
+}

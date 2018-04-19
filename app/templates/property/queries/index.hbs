@@ -1,4 +1,20 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item}}{{#link-to "property.index"}}{{model.property.name}}{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "property.index"}}{{property.name}}{{/link-to}}{{/crumbs.item}}
   {{#crumbs.item active=true}}Queries{{/crumbs.item}}
 {{/nav-breadcrumbs}}
+
+{{#paginate-models
+  models=model
+  routeName='property.queries.index'
+  totalCount=totalCount
+  hasNextPage=hasNextPage
+  endCursor=endCursor
+  first=first
+  after=after
+  ascending=ascending
+  sortBy=sortBy
+  sortOptions=sortOptions
+  as |model|
+}}
+  {{partial 'property/queries/list'}}
+{{/paginate-models}}

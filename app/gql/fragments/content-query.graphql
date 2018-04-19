@@ -1,6 +1,7 @@
+#import 'oh-behave-app/gql/fragments/content-query-list'
+
 fragment ContentQueryFragment on ContentQuery {
-  id
-  name
+  ...ContentQueryListFragment
   criteria {
     type
     items {

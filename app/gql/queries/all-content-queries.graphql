@@ -1,0 +1,17 @@
+#import 'oh-behave-app/gql/fragments/content-query-list'
+
+query allContentQueries($pagination: PaginationInput, $sort: ContentQuerySortInput) {
+  allContentQueries(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...ContentQueryListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

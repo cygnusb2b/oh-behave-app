@@ -16,8 +16,8 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-4">
-    <div class="form-group">
+  <div class="col-md-4">
+    <div class="form-group mb-3 mb-md-0">
       <label for="property.key">Account+Group Key</label>
       {{input
         type="text"
@@ -31,8 +31,8 @@
       <small id="property.key.help" class="form-text text-muted">The unique property key name. Used for querying.</small>
     </div>
   </div>
-  <div class="col-4">
-    <div class="form-group">
+  <div class="col-md-4">
+    <div class="form-group mb-3 mb-md-0">
       <label for="property.baseVersion">Base Version</label>
       {{#power-select
         options=sourceManager.baseVersions
@@ -45,8 +45,8 @@
       <small id="property.baseVersion.help" class="form-text text-muted">Select the version of Base used by this property.</small>
     </div>
   </div>
-  <div class="col-4">
-    <div class="form-group">
+  <div class="col-md-4">
+    <div class="form-group mb-0">
       <label for="property.userSource">User Source</label>
       {{#power-select
         options=sourceManager.userSources

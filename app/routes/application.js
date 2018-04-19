@@ -61,5 +61,17 @@ export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManag
       this.showLoading();
       transition.finally(() => this.hideLoading());
     },
+
+    /**
+     *
+     * @param {Error} e
+     */
+    error(e) {
+      if (this.get('graphErrors').isReady()) {
+        this.get('graphErrors').show(e);
+      } else {
+        this.intermediateTransitionTo('application_error', e);
+      }
+    },
   },
 });

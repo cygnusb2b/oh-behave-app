@@ -1,8 +1,15 @@
 import Service, { inject } from '@ember/service';
 import { isPresent } from '@ember/utils';
+import $ from 'jquery';
 
 export default Service.extend({
   notify: inject(),
+
+  isReady() {
+    const element = $('.ember-notify-default');
+    if (element.length) return true;
+    return false;
+  },
 
   handle(e) {
     // eslint-disable-next-line no-console
@@ -21,7 +28,7 @@ export default Service.extend({
       return this.handleNetworkError(e.networkError);
     }
     if (e.graphQLErrors) {
-      return new Error('Handling of graphQLError objects is not yet implemented.');
+      return e;
     }
     if (e.message) {
       return e;

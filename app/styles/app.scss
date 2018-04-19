@@ -34,11 +34,18 @@ form .progress {
 
 .dropdown-menu {
   box-shadow: $z-depth-2;
+  min-width: 300px;
+  width: inherit !important;
   border: none !important;
 }
 
 .card.list-index {
   box-shadow: $z-depth-1;
+  border: none !important;
+}
+
+.card.error {
+  box-shadow: $z-depth-1-half;
   border: none !important;
 }
 

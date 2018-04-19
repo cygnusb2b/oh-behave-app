@@ -1,7 +1,7 @@
 #import 'oh-behave-app/gql/fragments/content-query-list'
 
-query allContentQueries($pagination: PaginationInput, $sort: ContentQuerySortInput) {
-  allContentQueries(pagination: $pagination, sort: $sort) {
+query allContentQueries($propertyId: String!, $pagination: PaginationInput, $sort: ContentQuerySortInput) {
+  allContentQueries(propertyId: $propertyId, pagination: $pagination, sort: $sort) {
     totalCount
     edges {
       node {

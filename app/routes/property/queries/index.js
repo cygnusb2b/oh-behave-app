@@ -27,9 +27,10 @@ export default Route.extend(RouteQueryManager, {
   },
 
   model({ first, after, sortBy, ascending }) {
+    const propertyId = this.modelFor('property').get('id');
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { pagination, sort };
+    const variables = { propertyId, pagination, sort };
     if (!sortBy) delete variables.sort.field;
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allContentQueries')
       .then(pagination => this.setPagination(pagination))

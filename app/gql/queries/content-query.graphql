@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/content-query'
+
+query contentQuery($input: ContentQueryInput!) {
+  contentQuery(input: $input) {
+    ...ContentQueryFragment
+  }
+}

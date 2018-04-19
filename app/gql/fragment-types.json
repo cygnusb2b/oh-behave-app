@@ -1,0 +1,1 @@
+{"__schema":{"types":[{"kind":"UNION","name":"ContentQueryItem","possibleTypes":[{"name":"Taxonomy"},{"name":"Section"},{"name":"Company"}]}]}}

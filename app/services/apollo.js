@@ -3,9 +3,25 @@ import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { setContext } from 'apollo-link-context';
 import { Promise } from 'rsvp';
+import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
+import introspectionQueryResultData from 'oh-behave-app/gql/fragment-types';
+
 
 export default ApolloService.extend({
   session: inject(),
+
+  fragmentMatcher: computed(function() {
+    return new IntrospectionFragmentMatcher({
+      introspectionQueryResultData
+    });
+  }),
+
+  clientOptions: computed(function() {
+    return {
+      link: this.get('link'),
+      cache: new InMemoryCache({ fragmentMatcher: this.get('fragmentMatcher') }),
+    };
+  }),
 
   link: computed(function() {
     const httpLink = this._super(...arguments);

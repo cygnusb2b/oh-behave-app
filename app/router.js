@@ -10,7 +10,10 @@ Router.map(function() {
   this.route('property', { path: ':id' }, function() {
     this.route('queries', function() {
       this.route('create');
-      this.route('view', { path: '/view/:query_id' });
+      this.route('view', { path: '/view/:query_id' }, function() {
+        this.route('run');
+        this.route('history');
+      });
     });
   });
   this.route('login');

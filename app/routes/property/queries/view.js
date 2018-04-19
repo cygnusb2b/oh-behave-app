@@ -16,21 +16,4 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
     this._super(controller, model);
     controller.set('property', this.modelFor('property'));
   },
-
-  actions: {
-    test(model) {
-      this.showLoading();
-      const { id } = model;
-      const variables = { input: { id } };
-      this.get('apollo').watchQuery({
-        query: testContentQuery,
-        variables,
-        fetchPolicy: 'network-only'
-      }, 'testContentQuery')
-        .then((res) => console.info(res))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.hideLoading())
-      ;
-    },
-  },
 });

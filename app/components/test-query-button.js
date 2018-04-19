@@ -7,7 +7,7 @@ import query from 'oh-behave-app/gql/queries/test-content-query';
 
 export default Component.extend(LoadingMixin, ComponentQueryManager, {
   tagName: 'button',
-  classNames: ['btn', 'btn-info'],
+  classNames: ['btn'],
   attributeBindings: ['disabled', 'type'],
 
   type: 'button',

@@ -1,0 +1,6 @@
+
+query testContentQuery($input: ModelIdInput!) {
+  testContentQuery(input: $input) {
+    contentCount
+  }
+}

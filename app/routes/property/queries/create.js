@@ -6,9 +6,12 @@ import mutation from 'oh-behave-app/gql/mutations/create-content-query';
 
 export default Route.extend(RouteQueryManager, LoadingMixin, {
   model() {
-    const property = this.modelFor('property');
-    const query = { criteria: [] };
-    return { property, query };
+    return { criteria: [] };
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('property', this.modelFor('property'));
   },
 
   actions: {

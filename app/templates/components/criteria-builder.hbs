@@ -1,6 +1,6 @@
 <div class="accordion mb-3" id="criteria-builder">
   {{#each criteria as |model index|}}
-    {{criteria-builder/criteria propertyKey=propertyKey index=index model=model types=types onDestroy=(action "remove" model)}}
+    {{criteria-builder/criteria propertyId=propertyId index=index model=model types=types onDestroy=(action "remove" model)}}
   {{else}}
     {{!-- <p class="list-group-item">No criteria set. Add some by clicking the button below...</p> --}}
   {{/each}}

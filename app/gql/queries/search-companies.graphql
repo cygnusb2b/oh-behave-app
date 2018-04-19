@@ -1,7 +1,7 @@
 #import 'oh-behave-app/gql/fragments/company'
 
-query searchCompanies($property: String!, $phrase: String!) {
-  searchCompanies(property: $property, phrase: $phrase) {
+query searchCompanies($propertyId: String!, $phrase: String!) {
+  searchCompanies(propertyId: $propertyId, phrase: $phrase) {
     ...CompanyFragment
   }
 }

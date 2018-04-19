@@ -10,7 +10,7 @@ import searchSections from 'oh-behave-app/gql/queries/search-sections';
 
 export default Component.extend(ComponentQueryManager, {
 
-  property: null,
+  propertyId: null,
 
   closeOnSelect: true,
   allowClear: true,
@@ -36,8 +36,8 @@ export default Component.extend(ComponentQueryManager, {
   }),
 
   search: task(function* (phrase) {
-    const property = this.get('property');
-    const variables = { property, phrase };
+    const propertyId = this.get('propertyId');
+    const variables = { propertyId, phrase };
     const { query, resultKey } = this.get('_query');
 
     const selected = this.get('selected') || [];

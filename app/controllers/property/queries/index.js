@@ -10,5 +10,6 @@ export default AbstractPaginable.extend({
       { key: 'updatedAt', label: 'Updated' },
       { key: 'name', label: 'Name' },
     ]);
+    this.set('sortBy', 'updatedAt');
   },
 });

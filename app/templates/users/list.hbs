@@ -1,7 +1,11 @@
 {{#link-to "users.edit" model.id class="list-group-item list-group-item-action flex-column align-items-start"}}
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{model.givenName}} {{model.familyName}}</h5>
-    <small>{{#if model.updatedAt}}{{moment-format model.updatedAt "MMM Do, YYYY h:mm a"}}{{/if}}</small>
+    {{#if model.updatedAt}}
+      <small class="d-block" title="{{moment-format model.updatedAt 'MMM Do, YYYY h:mm a'}}">
+        {{entypo-icon "clock"}} Updated {{moment-from-now model.updatedAt}}
+      </small>
+    {{/if}}
   </div>
   <div class="mb-1">{{model.email}}</div>
 

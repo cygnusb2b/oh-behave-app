@@ -12,7 +12,6 @@ export default AbstractPaginable.extend({
       { key: 'givenName', label: 'First Name' },
       { key: 'familyName', label: 'Last Name' },
     ]);
-    this.set('sortBy', 'email');
-    this.set('ascending', true);
+    this.set('sortBy', 'updatedAt');
   },
 });

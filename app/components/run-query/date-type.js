@@ -7,8 +7,12 @@ export default Component.extend({
   dateType: null,
   disabled: false,
 
-  filteredDateTypes: computed('dateType.key', function() {
-    return this.get('dateTypes').filter(type => type.key !== this.get('dateType.key'));
+  selectedType: computed('dateType', function() {
+    return this.get('dateTypes').find(type => type.key === this.get('dateType'));
+  }),
+
+  filteredDateTypes: computed('dateType', function() {
+    return this.get('dateTypes').filter(type => type.key !== this.get('dateType'));
   }),
 
   actions: {

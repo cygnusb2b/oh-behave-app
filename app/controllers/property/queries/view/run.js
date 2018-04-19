@@ -1,8 +1,15 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { inject } from '@ember/service';
+import LoadingMixing from 'oh-behave-app/mixins/loading-mixin';
+import moment from 'moment';
 
-export default Controller.extend({
-  dateType: null,
+import mutation from 'oh-behave-app/gql/mutations/create-content-query-result';
+
+export default Controller.extend(LoadingMixing, {
+  apollo: inject(),
+
+  dateType: 'latest',
 
   isRunning: false,
   hasSelectedDates: computed.and('range.{start,end}'),
@@ -13,8 +20,8 @@ export default Controller.extend({
     return true;
   }),
 
-  calendarComponent: computed('dateType.key', function() {
-    const key = this.get('dateType.key');
+  calendarComponent: computed('dateType', function() {
+    const key = this.get('dateType');
     switch (key) {
       case 'latest':
         return 'run-query/30-day-calendar';
@@ -28,18 +35,40 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     this.clearDateRange();
+
     this.set('dateTypes', [
       { key: 'latest', label: 'Within Last 30-Days' },
       { key: 'archive', label: 'From Monthly Archive' },
     ]);
+
   },
 
   clearDateRange() {
-    this.set('range', { start: null, end: null });
+    const start = moment().subtract(7, 'days').startOf('day');
+    const end = moment().endOf('day');
+    this.set('range', { start, end });
   },
   actions: {
     run() {
+      this.showLoading();
       this.set('isRunning', true);
+
+      const payload = {
+        queryId: this.get('model.id'),
+        startDate: this.get('range.start').valueOf(),
+        endDate: this.get('range.end').valueOf(),
+        sourceType: this.get('dateType'),
+      };
+      const variables = { input: { payload } };
+      return this.get('apollo').mutate({ mutation, variables }, 'createContentQueryResult')
+        .then(response => console.info(response))
+        .then(() => this.get('notify').success('Query result successfully created.'))
+        .catch(e => this.get('graphErrors').show(e))
+        .finally(() => {
+          this.set('isRunning', false);
+          this.hideLoading();
+        })
+      ;
     },
   },
 });

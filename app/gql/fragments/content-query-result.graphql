@@ -1,0 +1,19 @@
+fragment ContentQueryResultFragment on ContentQueryResult {
+  id
+  baseVersion
+  userSource
+  sourceType
+  startDate
+  endDate
+  contentCount
+  contentViews
+  userCount
+  foundUserCount
+  ranAt
+  ranBy {
+    id
+    familyName
+    givenName
+    email
+  }
+}

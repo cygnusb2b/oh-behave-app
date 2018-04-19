@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/content-query-result'
+
+mutation createContentQueryResult($input: CreateContentQueryResultInput!) {
+	createContentQueryResult(input: $input) {
+    ...ContentQueryResultFragment
+	}
+}

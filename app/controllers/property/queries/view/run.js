@@ -13,12 +13,12 @@ export default Controller.extend({
     return true;
   }),
 
-  calendarComponent: computed('dateType', function() {
-    const type = this.get('dateType');
-    switch (type) {
-      case 'Within Last 30-Days':
+  calendarComponent: computed('dateType.key', function() {
+    const key = this.get('dateType.key');
+    switch (key) {
+      case 'latest':
         return 'run-query/30-day-calendar';
-      case 'From Monthly Archive':
+      case 'archive':
         return 'run-query/monthly-calendar';
       default:
         return null;
@@ -29,8 +29,8 @@ export default Controller.extend({
     this._super(...arguments);
     this.clearDateRange();
     this.set('dateTypes', [
-      'Within Last 30-Days',
-      'From Monthly Archive',
+      { key: 'latest', label: 'Within Last 30-Days' },
+      { key: 'archive', label: 'From Monthly Archive' },
     ]);
   },
 

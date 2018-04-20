@@ -2,7 +2,7 @@
   <button class="btn btn-primary dropdown-toggle" disabled={{disabled}} data-ebd-id="{{dropdown.uniqueId}}-trigger" {{action dropdown.actions.toggle}}>
     {{entypo-icon "calendar"}}
     {{#if range.start}}
-      {{moment-format range.start "MMMM Do, YYYY"}}
+      {{moment-format range.start "MMMM, YYYY"}}
     {{else}}
       Select Start Month
     {{/if}}
@@ -17,7 +17,7 @@
           <nav class="ember-power-calendar-nav">
             <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -1 'month'}}>‹</button>
             <div class="ember-power-calendar-nav-title">
-              {{moment-format calendar.center 'MMMM YYYY'}}
+              {{moment-format calendar.center 'MMMM, YYYY'}}
             </div>
             {{#if (lt range.start nowStartOf)}}
               <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 1 'month'}}>›</button>
@@ -34,7 +34,7 @@
   <button class="btn btn-primary dropdown-toggle" disabled={{disabled}} data-ebd-id="{{dropdown.uniqueId}}-trigger" {{action dropdown.actions.toggle}}>
     {{entypo-icon "calendar"}}
     {{#if range.end}}
-      {{moment-format range.end "MMMM Do, YYYY"}}
+      {{moment-format range.end "MMMM, YYYY"}}
     {{else}}
       Select End Month
     {{/if}}
@@ -51,7 +51,7 @@
               <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -1 'month'}}>‹</button>
             {{/if}}
             <div class="ember-power-calendar-nav-title">
-              {{moment-format calendar.center 'MMMM YYYY'}}
+              {{moment-format calendar.center 'MMMM, YYYY'}}
             </div>
             {{#if (lt range.end nowStartOf)}}
               <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 1 'month'}}>›</button>

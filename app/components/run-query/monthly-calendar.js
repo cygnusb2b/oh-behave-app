@@ -25,25 +25,21 @@ export default Component.extend({
 
   actions: {
     setStart(date) {
-      this.set('range.start', date.startOf('month'));
+      this.set('range.start', moment(date).startOf('month'));
       const end = this.get('range.end');
       if (!end) return;
-      if (moment(date).endOf('month').unix() >= end.unix()) {
+      if (this.get('range.start').unix() > moment(end).unix()) {
         this.send('setEnd', moment(end).add(1, 'month'));
       }
     },
     setEnd(date) {
-      this.set('range.end', date.endOf('month'));
+      this.set('range.end', moment(date).startOf('month'));
     },
     setInitialRange() {
-      const start = this.get('range.start');
-      const end = this.get('range.end');
-      if (!start) {
-        this.send('setStart', moment());
-      }
-      if (!end) {
-        this.send('setEnd', moment());
-      }
+      const start = this.get('range.start') || moment();
+      const end = this.get('range.end') || moment();
+      this.send('setEnd', end);
+      this.send('setStart', start);
     },
   },
 

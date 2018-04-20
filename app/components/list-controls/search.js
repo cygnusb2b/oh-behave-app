@@ -70,5 +70,10 @@ export default Component.extend({
     selectAll(event) {
       if (this.get('selectAllOnFocus')) event.target.select();
     },
+    clear() {
+      this.set('value', '');
+      const onSubmit = this.get('onSubmit');
+      if (onSubmit) onSubmit('');
+    },
   },
 });

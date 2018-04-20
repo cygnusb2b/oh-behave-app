@@ -4,11 +4,12 @@
     class="form-control"
     placeholder=placeholder
     value=phrase
+    disabled=disabled
     focusIn=(action "selectAll")
   }}
   <div class="input-group-append">
-    <button class="btn btn-primary" type="submit">
+    {{#list-controls/button class=buttonClass type="submit" disabled=disabled}}
       {{entypo-icon icon}}{{#if label}} {{label}}{{/if}}
-    </button>
+    {{/list-controls/button}}
   </div>
 </div>

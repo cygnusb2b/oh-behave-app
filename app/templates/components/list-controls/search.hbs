@@ -1,0 +1,14 @@
+<div class="input-group">
+  {{input
+    type="search"
+    class="form-control"
+    placeholder=placeholder
+    value=phrase
+    focusIn=(action "selectAll")
+  }}
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="submit">
+      {{entypo-icon icon}}{{#if label}} {{label}}{{/if}}
+    </button>
+  </div>
+</div>

@@ -12,7 +12,7 @@ Router.map(function() {
       this.route('create');
       this.route('view', { path: '/view/:query_id' }, function() {
         this.route('run');
-        this.route('history');
+        this.route('results');
       });
     });
   });

@@ -1,0 +1,17 @@
+#import 'oh-behave-app/gql/fragments/content-query-result'
+
+query allContentQueryResults($queryId: String!, $pagination: PaginationInput, $sort: ContentQueryResultSortInput) {
+  allContentQueryResults(queryId: $queryId, pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...ContentQueryResultFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

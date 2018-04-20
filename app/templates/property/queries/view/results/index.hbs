@@ -1,1 +1,13 @@
-{{outlet}}
+<div class="card-body">
+  {{partial "list-controls"}}
+</div>
+
+<div class="list-group list-group-flush">
+  {{#each model as |item|}}
+    {{partial "property/queries/view/results/list-item"}}
+  {{else}}
+    <h5 class="list-group-item mb-0">No results.</h5>
+  {{/each}}
+</div>
+
+<div class="card-footer border-0"></div>

@@ -18,7 +18,9 @@
   {{test-query-button class="btn-info btn-lg" model=model}}
 
   <div class="btn-group btn pr-0">
-    <div class="btn btn-warning" disabled={{loadingDisplay.isShowing}}>{{entypo-icon "pencil"}} Edit</div>
+    {{#link-to "property.queries.edit" model.id class="btn btn-warning" disabled=loadingDisplay.isShowing}}
+      {{entypo-icon "pencil"}} Edit
+    {{/link-to}}
   </div>
 </div>
 

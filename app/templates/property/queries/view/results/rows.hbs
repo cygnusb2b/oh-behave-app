@@ -1,1 +1,39 @@
-{{outlet}}
+<div class="card-body">
+  <h4 class="card-title">
+    Results for
+    {{#if (eq model.result.sourceType "archive")}}
+      {{moment-format model.result.startDate 'MMM, YYYY'}} - {{moment-format model.result.endDate 'MMM, YYYY'}}
+    {{else}}
+      {{moment-format model.result.startDate 'MMM D, YYYY'}} - {{moment-format model.result.endDate 'MMM D, YYYY'}}
+    {{/if}}
+    <span class="h6">({{#link-to "property.queries.view.results.index"}}See all results{{/link-to}})</span>
+  </h4>
+  <h5 class="card-title">
+    From Base {{model.result.baseVersion}} ({{model.result.userSource}})
+  </h5>
+
+
+  <p class="card-text mb-0">Content Items: {{format-number model.result.contentCount "0,0"}}</p>
+  <p class="card-text mb-0">Content Views: {{format-number model.result.contentViews "0,0"}}</p>
+  <p class="card-text">Users Found: {{format-number model.result.foundUserCount "0,0"}}</p>
+
+  <p class="card-text mb-0">
+    Ran {{moment-from-now model.result.ranAt}} by {{model.result.ranBy.givenName}} {{model.result.ranBy.familyName}}
+  </p>
+</div>
+<div class="card-footer"></div>
+
+<div class="card-body">
+  {{partial "list-controls"}}
+</div>
+
+<ul class="list-group list-group-flush">
+  {{#each model.rows as |row|}}
+    <li class="list-group-item">{{row.email}}</li>
+  {{else}}
+    <li class="list-group-item"><h5 class="mb-0">No results.</h5></li>
+  {{/each}}
+</ul>
+
+
+<div class="card-footer border-0"></div>

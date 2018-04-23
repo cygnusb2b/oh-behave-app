@@ -1,0 +1,4 @@
+fragment ContentQueryResultRowFragment on ContentQueryResultRow {
+  id
+  email
+}

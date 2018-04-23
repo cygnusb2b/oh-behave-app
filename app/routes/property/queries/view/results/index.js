@@ -22,7 +22,7 @@ export default Route.extend(RouteQueryManager, {
   setPagination(pagination) {
     const { totalCount } = pagination;
     const { hasNextPage, endCursor } = pagination.pageInfo;
-    this.controllerFor('property.queries.index').setProperties({ totalCount, hasNextPage, endCursor });
+    this.controllerFor('property.queries.view.results.index').setProperties({ totalCount, hasNextPage, endCursor });
     return pagination.edges.map(node => node.node);
   },
 
@@ -36,10 +36,5 @@ export default Route.extend(RouteQueryManager, {
       .then(pagination => this.setPagination(pagination))
       .catch(e => this.get('graphErrors').show(e))
     ;
-  },
-
-  setupController(controller, model) {
-    this._super(controller, model);
-    controller.set('property', this.modelFor('property'));
   },
 });

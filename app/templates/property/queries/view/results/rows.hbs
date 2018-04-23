@@ -25,7 +25,9 @@
   </p>
 </div>
 <div class="card-footer">
-  <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}}>{{entypo-icon "export"}} Export</button>
+  <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}} {{action "export" model.result.id}}>
+    {{entypo-icon "export"}} Export
+  </button>
 </div>
 
 {{#if model.result.foundUserCount}}

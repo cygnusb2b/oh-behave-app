@@ -3,11 +3,17 @@
   class="list-group-item list-group-item-action flex-column align-items-start"
 }}
   <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">Query</h5>
+    <h5 class="mb-0">
+      {{#if (eq item.sourceType "archive")}}
+        {{moment-format item.startDate 'MMM, YYYY'}} - {{moment-format item.endDate 'MMM, YYYY'}}
+      {{else}}
+        {{moment-format item.startDate 'MMM D, YYYY'}} - {{moment-format item.endDate 'MMM D, YYYY'}}
+      {{/if}}
+    </h5>
     <div class="text-right">
       {{#if item.ranAt}}
         <small class="d-block" title="{{moment-format item.ranAt 'MMM Do, YYYY h:mm a'}}">
-          {{entypo-icon "clock"}} Last Ran {{moment-from-now item.ranAt}}
+          {{entypo-icon "clock"}} Ran {{moment-from-now item.ranAt}}
         </small>
       {{/if}}
       <small class="d-block" title="{{item.ranBy.email}}">
@@ -16,7 +22,8 @@
     </div>
   </div>
 
-  {{!-- <p class="mb-1">Base {{item.baseVersion}} ({{item.userSource}})</p>
-  <small class="d-block">{{item.key}}</small> --}}
+  <p class="mb-0">Content Items: {{format-number item.contentCount "0,0"}}</p>
+  <p class="mb-1">Users Found: {{format-number item.foundUserCount "0,0"}}</p>
   <small class="d-block">ID: {{item.id}}</small>
+
 {{/link-to}}

@@ -61,8 +61,10 @@ export default Controller.extend(LoadingMixing, {
       };
       const variables = { input: { payload } };
       return this.get('apollo').mutate({ mutation, variables }, 'createContentQueryResult')
-        .then(response => console.info(response))
-        .then(() => this.get('notify').success('Query result successfully created.'))
+        .then((response) => {
+          this.get('notify').success('Query result successfully created.');
+          this.transitionToRoute('property.queries.view.results.rows', response.id);
+        })
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => {
           this.set('isRunning', false);

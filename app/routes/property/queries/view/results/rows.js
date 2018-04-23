@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { getObservable } from 'ember-apollo-client';
 import { hash } from 'rsvp';
 
 import rowsQuery from 'oh-behave-app/gql/queries/all-content-query-result-rows';
@@ -20,14 +21,9 @@ export default Route.extend(RouteQueryManager, {
       refreshModel: true
     },
   },
-  setPagination(pagination) {
-    const { totalCount } = pagination;
-    const { hasNextPage, endCursor } = pagination.pageInfo;
-    this.controllerFor('property.queries.view.results.rows').setProperties({ totalCount, hasNextPage, endCursor });
-    return pagination.edges.map(node => node.node);
-  },
 
   model({ result_id, first, after, sortBy, ascending }) {
+    const controller = this.controllerFor(this.get('routeName'));
 
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
@@ -37,7 +33,10 @@ export default Route.extend(RouteQueryManager, {
     return hash({
       result: this.get('apollo').watchQuery({ query, variables: { input: { id: result_id } } }, 'contentQueryResult'),
       rows: this.get('apollo').watchQuery({ query: rowsQuery, variables, fetchPolicy: 'network-only' }, 'allContentQueryResultRows')
-        .then(pagination => this.setPagination(pagination))
+        .then((result) => {
+          controller.set('observable', getObservable(result));
+          return result;
+        })
         .catch(e => this.get('graphErrors').show(e)
       ),
     });

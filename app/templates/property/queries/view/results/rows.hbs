@@ -27,13 +27,31 @@
   {{partial "list-controls"}}
 </div>
 
-<ul class="list-group list-group-flush">
-  {{#each model.rows as |row|}}
-    <li class="list-group-item">{{row.email}}</li>
-  {{else}}
-    <li class="list-group-item"><h5 class="mb-0">No results.</h5></li>
-  {{/each}}
-</ul>
+{{#fetch-more
+  query=observable
+  edges=model.rows.edges
+  hasNextPage=model.rows.pageInfo.hasNextPage
+  endCursor=model.rows.pageInfo.endCursor
+  on-fetch-start=(action showLoading)
+  on-fetch-end=(action hideLoading)
+  resultKey="allContentQueryResultRows" as |fetch|
+}}
+  <ul class="list-group list-group-flush">
+    {{#each fetch.nodes as |node|}}
+      <li class="list-group-item">{{node.email}}</li>
+    {{else}}
+      <li class="list-group-item"><h5 class="mb-0">No results.</h5></li>
+    {{/each}}
+  </ul>
+
+  <div class="card-footer border-0">
+    {{#if fetch.hasNextPage}}
+      <button class="btn btn-primary btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+        {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+      </button>
+    {{/if}}
+  </div>
+
+{{/fetch-more}}
 
 
-<div class="card-footer border-0"></div>

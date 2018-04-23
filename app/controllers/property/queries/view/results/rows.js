@@ -15,9 +15,14 @@ export default ListController.extend(LoadingMixin, {
     this.set('ascending', true);
   },
 
+  isExportLogOpen: false,
+
   actions: {
     export(resultId) {
       window.location = `/export/${resultId}?bearer=${this.get('session.data.authenticated.token')}`;
+    },
+    displayExportLog() {
+      this.set('isExportLogOpen', true);
     },
   },
 });

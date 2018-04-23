@@ -1,19 +1,18 @@
+#import 'oh-behave-app/gql/fragments/content-query-result-list'
+
 fragment ContentQueryResultFragment on ContentQueryResult {
-  id
+  ...ContentQueryResultListFragment
   baseVersion
   userSource
-  sourceType
-  startDate
-  endDate
-  contentCount
   contentViews
-  userCount
-  foundUserCount
-  ranAt
-  ranBy {
+  exports {
     id
-    familyName
-    givenName
-    email
+    exportedAt
+    exportedBy {
+      id
+      givenName
+      familyName
+      email
+    }
   }
 }

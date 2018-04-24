@@ -5,14 +5,4 @@ fragment ContentQueryResultFragment on ContentQueryResult {
   baseVersion
   userSource
   contentViews
-  exports {
-    id
-    exportedAt
-    exportedBy {
-      id
-      givenName
-      familyName
-      email
-    }
-  }
 }

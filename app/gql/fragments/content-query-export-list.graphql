@@ -1,0 +1,10 @@
+fragment ContentQueryExportListFragment on ContentQueryExport {
+  id
+  exportedAt
+  exportedBy {
+    id
+    givenName
+    familyName
+    email
+  }
+}

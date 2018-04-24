@@ -1,0 +1,17 @@
+#import 'oh-behave-app/gql/fragments/content-query-export-list'
+
+query allExportsForQueryResult($resultId: String!, $pagination: PaginationInput, $sort: ContentQueryExportSortInput) {
+  allExportsForQueryResult(resultId: $resultId, pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...ContentQueryExportListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

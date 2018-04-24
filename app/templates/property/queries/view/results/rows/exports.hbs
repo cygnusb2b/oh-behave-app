@@ -19,12 +19,12 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model.result.exports as |export|}}
+        {{#each model as |export|}}
           <tr>
             <td>{{export.exportedBy.givenName}}</td>
             <td>{{export.exportedBy.familyName}}</td>
             <td>{{export.exportedBy.email}}</td>
-            <td>{{moment-from-now export.exportedAt}}</td>
+            <td title={{moment-format export.exportedAt 'MMM Do, YYYY @ h:mm a'}}>{{moment-from-now export.exportedAt}}</td>
           </tr>
         {{/each}}
       </tbody>

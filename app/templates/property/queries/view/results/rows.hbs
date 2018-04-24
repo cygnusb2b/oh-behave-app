@@ -56,10 +56,9 @@
     resultKey="allContentQueryResultRows" as |fetch|
   }}
     <ul class="list-group list-group-flush">
+      <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.rows.totalCount}}</h5></li>
       {{#each fetch.nodes as |node|}}
         <li class="list-group-item">{{node.email}}</li>
-      {{else}}
-        <li class="list-group-item"><h5 class="mb-0">No results.</h5></li>
       {{/each}}
     </ul>
 

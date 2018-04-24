@@ -10,16 +10,17 @@
       <a class="dropdown-item" href="javascript:void(0)" title="Change Password" {{action "displayChangePassword"}}>
         {{entypo-icon "key"}} Change Password
       </a>
+      {{#if (user-role-is "Administrator")}}
+        <div class="dropdown-divider"></div>
 
-      <div class="dropdown-divider"></div>
-
-      <h6 class="dropdown-header">Admin</h6>
-      {{#link-to "properties" class="dropdown-item" title="Manage Properties"}}
-        {{entypo-icon "database"}} Properties
-      {{/link-to}}
-      {{#link-to "users" class="dropdown-item" title="Manage Users"}}
-        {{entypo-icon "users"}} Users
-      {{/link-to}}
+        <h6 class="dropdown-header">Admin</h6>
+        {{#link-to "properties" class="dropdown-item" title="Manage Properties"}}
+          {{entypo-icon "database"}} Properties
+        {{/link-to}}
+        {{#link-to "users" class="dropdown-item" title="Manage Users"}}
+          {{entypo-icon "users"}} Users
+        {{/link-to}}
+      {{/if}}
 
       <div class="dropdown-divider"></div>
 

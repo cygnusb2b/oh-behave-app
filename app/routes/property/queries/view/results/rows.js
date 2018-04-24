@@ -30,15 +30,21 @@ export default Route.extend(RouteQueryManager, {
     const variables = { resultId: result_id, pagination, sort };
     if (!sortBy) delete variables.sort.field;
 
-    return hash({
-      result: this.get('apollo').watchQuery({ query, variables: { input: { id: result_id } } }, 'contentQueryResult'),
-      rows: this.get('apollo').watchQuery({ query: rowsQuery, variables, fetchPolicy: 'network-only' }, 'allContentQueryResultRows')
+    let rows;
+    if (this.get('user').roleIs('Administrator', 'Member')) {
+      rows = this.get('apollo').watchQuery({ query: rowsQuery, variables, fetchPolicy: 'network-only' }, 'allContentQueryResultRows')
         .then((result) => {
           controller.set('observable', getObservable(result));
           return result;
         })
         .catch(e => this.get('graphErrors').show(e)
-      ),
+      );
+    } else {
+      rows = [];
+    }
+    return hash({
+      result: this.get('apollo').watchQuery({ query, variables: { input: { id: result_id } } }, 'contentQueryResult'),
+      rows,
     });
   },
 });

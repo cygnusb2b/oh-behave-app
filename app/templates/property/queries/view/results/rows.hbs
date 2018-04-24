@@ -27,19 +27,21 @@
 
 
 <div class="card-footer d-flex justify-content-between">
-  <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}} {{action "export" model.result.id}}>
-    {{entypo-icon "export"}} Export
-  </button>
+  {{#if (user-role-is "Administrator" "Member")}}
+    <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}} {{action "export" model.result.id}}>
+      {{entypo-icon "export"}} Export
+    </button>
 
-  <div class="btn-group btn pr-0">
-    {{#link-to "property.queries.view.results.rows.exports" class="btn btn-info"}}
-      {{entypo-icon "eye"}} View Export Log
-    {{/link-to}}
-  </div>
+    <div class="btn-group btn pr-0">
+      {{#link-to "property.queries.view.results.rows.exports" class="btn btn-info"}}
+        {{entypo-icon "eye"}} View Export Log
+      {{/link-to}}
+    </div>
+  {{/if}}
 </div>
 
 
-{{#if model.result.foundUserCount}}
+{{#if model.rows.edges.length}}
   <div class="card-body">
     {{partial "list-controls"}}
   </div>

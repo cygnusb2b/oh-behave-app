@@ -18,31 +18,23 @@ export default Service.extend({
   model: null,
 
   /**
-   * The user id. Will be `null` if the there is not authenticated user.
-   *
-   * @type {?string}
-   */
-  uid: computed.reads('auth.uid'),
-
-  /**
-   * The auth object, or `null` if not authenticated.
-   *
-   * @type {?object}
-   */
-  auth: computed('isAuthenticated', 'session.currentUser.@each', function() {
-    if (!this.get('isAuthenticated')) {
-      return;
-    }
-    return this.get('session.currentUser');
-  }),
-
-  /**
    * Determines if the user is authenticated, based on the session.
    * Does not check whether a user model is present, or if the session is verified.
    *
    * @type {boolean}
    */
   isAuthenticated: computed.reads('session.isAuthenticated'),
+
+  role: computed('isAuthenticated', 'model.role', function() {
+    if (!this.get('isAuthenticated')) return null;
+    return this.get('model.role');
+  }),
+
+  roleIs(...roles) {
+    const role = this.get('role');
+    if (!role) return false;
+    return roles.includes(role);
+  },
 
   load() {
     return new Promise((resolve) => {

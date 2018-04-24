@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { assign } from '@ember/polyfills';
+import { isArray } from '@ember/array';
 
 export default Component.extend({
 
@@ -17,7 +18,9 @@ export default Component.extend({
   isFetching: false,
 
   nodes: computed('edges.@each.node', function() {
-    return this.get('edges').map(edge => edge.node);
+    const edges = this.get('edges');
+    if (!isArray(edges)) return [];
+    return edges.map(edge => edge.node);
   }),
 
   hasEvent(name) {

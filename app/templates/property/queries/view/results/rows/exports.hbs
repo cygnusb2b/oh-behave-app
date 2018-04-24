@@ -1,5 +1,5 @@
 
-{{#bs-modal show=true onHidden=(route-action "transitionTo" "property.queries.view.results.rows") as |modal|}}
+{{#bs-modal show=true size="large" onHidden=(route-action "transitionTo" "property.queries.view.results.rows") as |modal|}}
 
   {{#modal.header}}
     <h5 class="modal-title">Export Log</h5>
@@ -9,26 +9,28 @@
   {{/modal.header}}
 
   {{#modal.body}}
-    <table class="table table-responsive table-striped mb-0">
-      <thead>
-        <tr>
-          <th>{{entypo-icon "user"}} First</th>
-          <th>{{entypo-icon "user"}} Last</th>
-          <th>{{entypo-icon "email"}} Email</th>
-          <th>{{entypo-icon "clock"}} Exported</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model as |export|}}
+    <div class="table-responsive">
+      <table class="table table-striped mb-0">
+        <thead>
           <tr>
-            <td>{{export.exportedBy.givenName}}</td>
-            <td>{{export.exportedBy.familyName}}</td>
-            <td>{{export.exportedBy.email}}</td>
-            <td title={{moment-format export.exportedAt 'MMM Do, YYYY @ h:mm a'}}>{{moment-from-now export.exportedAt}}</td>
+            <th>{{entypo-icon "user"}} First</th>
+            <th>{{entypo-icon "user"}} Last</th>
+            <th>{{entypo-icon "email"}} Email</th>
+            <th>{{entypo-icon "clock"}} Exported</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {{#each model as |export|}}
+            <tr>
+              <td>{{export.exportedBy.givenName}}</td>
+              <td>{{export.exportedBy.familyName}}</td>
+              <td>{{export.exportedBy.email}}</td>
+              <td title={{moment-format export.exportedAt 'MMM Do, YYYY @ h:mm a'}}>{{moment-from-now export.exportedAt}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   {{/modal.body}}
 
 {{/bs-modal}}

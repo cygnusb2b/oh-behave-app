@@ -4,8 +4,8 @@
       {{entypo-icon "database"}} Properties
     </a>
     <div class="dropdown-menu">
-      {{#each properties as |property|}}
-        {{#link-to "property" property.id class="dropdown-item"}}{{property.name}}{{/link-to}}
+      {{#each edges as |edge|}}
+        {{#link-to "property" edge.node.id class="dropdown-item"}}{{edge.node.name}}{{/link-to}}
       {{/each}}
     </div>
   </li>

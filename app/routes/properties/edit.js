@@ -27,9 +27,10 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
     },
     delete(id, routeName) {
       this.showLoading();
+      const refetchQueries = ['PropertyDropdown'];
       const mutation = deleteProperty;
       const variables = { input: { id } };
-      return this.get('apollo').mutate({ mutation, variables }, 'deleteProperty')
+      return this.get('apollo').mutate({ mutation, variables, refetchQueries }, 'deleteProperty')
         .then(() => this.transitionTo(routeName))
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => this.hideLoading())

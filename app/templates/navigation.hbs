@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     {{#link-to "index" class="navbar-brand"}}Oh <span class="text-primary">Behave</span>!{{/link-to}}
     <ul class="navbar-nav mr-auto">
-      {{property-nav properties=model}}
+      {{property-nav edges=model.edges}}
     </ul>
     <ul class="navbar-nav float-lg-right">
       {{user-nav}}

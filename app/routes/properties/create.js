@@ -12,9 +12,10 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
   actions: {
     create({ name, key, baseVersion, userSource }) {
       this.showLoading();
+      const refetchQueries = ['PropertyDropdown'];
       const payload = { name, key, baseVersion, userSource };
       const variables = { input: { payload } };
-      return this.get('apollo').mutate({ mutation, variables }, 'createProperty')
+      return this.get('apollo').mutate({ mutation, variables, refetchQueries }, 'createProperty')
         .then(response => this.transitionTo('properties.edit', response.id))
         .then(() => this.get('notify').success('Property successfully created.'))
         .catch(e => this.get('graphErrors').show(e))

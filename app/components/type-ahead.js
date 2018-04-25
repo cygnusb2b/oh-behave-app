@@ -22,6 +22,12 @@ export default Component.extend(ComponentQueryManager, {
   selected: null,
   placeholder: null,
 
+  _closeOnSelect: computed('results.length', 'multiple', function() {
+    const closeOnSelect = this.get('closeOnSelect');
+    if (!this.get('multiple')) return closeOnSelect;
+    return this.get('results.length') === 1 ? true : closeOnSelect;
+  }),
+
   _query: computed('type', function() {
     const type = this.get('type');
     switch (type) {
@@ -43,8 +49,12 @@ export default Component.extend(ComponentQueryManager, {
     const selected = this.get('selected') || [];
     const filterFrom = isArray(selected) ? selected : [ selected ];
     yield timeout(this.get('timeout'));
-    return this.get('apollo').watchQuery({ query, variables }, resultKey)
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, resultKey)
       .then(r => r.filter(i => filterFrom.filterBy('id', i.id).length === 0))
+      .then((f) => {
+        this.set('results', f);
+        return f;
+      })
       .catch(e => this.get('graphErrors').show(e))
     ;
   }),

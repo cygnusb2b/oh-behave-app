@@ -4,7 +4,7 @@
     selected=selected
     placeholder=placeholder
     onchange=(if onChange onChange (action (mut selected)))
-    closeOnSelect=closeOnSelect
+    closeOnSelect=_closeOnSelect
     disabled=disabled
     as |model|}}
     {{#if (has-block)}}
@@ -19,7 +19,7 @@
     selected=selected
     placeholder=placeholder
     allowClear=allowClear
-    closeOnSelect=closeOnSelect
+    closeOnSelect=_closeOnSelect
     disabled=disabled
     onchange=(if onChange onChange (action (mut selected)))
     as |model|}}

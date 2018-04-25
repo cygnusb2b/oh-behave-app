@@ -1,5 +1,6 @@
 import ListController from '../../../../abstract-list';
 import { inject } from '@ember/service';
+import { get } from '@ember/object';
 import LoadingMixin from 'oh-behave-app/mixins/loading-mixin';
 
 export default ListController.extend(LoadingMixin, {
@@ -19,7 +20,8 @@ export default ListController.extend(LoadingMixin, {
 
   actions: {
     export(resultId) {
-      window.location = `/export/${resultId}?bearer=${this.get('session.data.authenticated.token')}`;
+      const data = this.get('session.data.authenticated');
+      window.location = `/export/${resultId}?bearer=${get(data, 'session.token')}`;
     },
     displayExportLog() {
       this.set('isExportLogOpen', true);

@@ -1,13 +1,19 @@
 import Component from '@ember/component';
+import { inject } from '@ember/service';
 
 export default Component.extend({
   tagName: 'form',
 
+  notify: inject(),
+
   submit(event) {
     event.preventDefault();
     event.stopPropagation();
-    const onSubmit = this.get('onSubmit');
-    if (onSubmit) onSubmit(this.get('value'));
+    // @todo Eventually enable this.
+    this.get('notify').warning('Search is not enabled... yet. Stay tuned.');
+
+    // const onSubmit = this.get('onSubmit');
+    // if (onSubmit) onSubmit(this.get('value'));
   },
 
   /**

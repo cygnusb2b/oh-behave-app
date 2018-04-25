@@ -1,0 +1,7 @@
+#import 'oh-behave-app/gql/fragments/content-query'
+
+mutation updateContentQuery($input: UpdateContentQueryInput!) {
+	updateContentQuery(input: $input) {
+    ...ContentQueryFragment
+	}
+}

@@ -1,1 +1,18 @@
-{{outlet}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "property.index"}}{{property.name}}{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "property.queries.index"}}Queries{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+
+<form {{action (route-action "update" model) on="submit"}}>
+  <div class="card model-form">
+    <div class="card-header"></div>
+    <div class="card-body">
+      {{ partial "property/queries/form" }}
+    </div>
+    <div class="card-footer">
+      {{model-save-button disabled=loadingDisplay.isShowing}}
+    </div>
+  </div>
+</form>

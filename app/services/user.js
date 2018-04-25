@@ -7,7 +7,7 @@ export default Service.extend(ObjectQueryManager, {
   session: inject(),
   auth: inject(),
 
-  model: computed.reads('auth.user'),
+  model: computed.alias('auth.response.user'),
 
   isAuthenticated: computed.reads('session.isAuthenticated'),
 

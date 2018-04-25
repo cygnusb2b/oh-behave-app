@@ -6,7 +6,7 @@ export default Base.extend({
   auth: inject(),
 
   getToken(data) {
-    return get(data, 'token');
+    return get(data, 'session.token');
   },
 
   restore(data) {

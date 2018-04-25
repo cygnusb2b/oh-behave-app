@@ -37,7 +37,7 @@ export default ApolloService.extend({
       return {};
     }
     return new Promise((resolve) => {
-      const data = this.get('session.data.authenticated');
+      const data = this.get('session.data.authenticated.session');
       const headers = {
         'Authorization': `Bearer ${get(data, 'token')}`,
       }

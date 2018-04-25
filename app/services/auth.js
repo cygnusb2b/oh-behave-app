@@ -6,8 +6,6 @@ import deleteSession from 'oh-behave-app/gql/mutations/delete-session';
 import loginUser from 'oh-behave-app/gql/mutations/login-user';
 
 export default Service.extend(ObjectQueryManager, {
-  user: null,
-
   /**
    * Checks the current session.
    *
@@ -18,10 +16,9 @@ export default Service.extend(ObjectQueryManager, {
     const variables = {
       input: { token },
     };
-    return this.get('apollo').watchQuery({ query: checkSession, variables }, "checkSession").then((auth) => {
-      const { session, user } = auth;
-      this.set('user', user);
-      return session;
+    return this.get('apollo').watchQuery({ query: checkSession, variables, fetchPolicy: 'network-only' }, "checkSession").then((auth) => {
+      this.set('response', auth);
+      return auth;
     });
   },
 
@@ -37,9 +34,8 @@ export default Service.extend(ObjectQueryManager, {
       input: { email, password },
     };
     return this.get('apollo').mutate({ mutation: loginUser, variables }, "loginUser").then((auth) => {
-      const { session, user } = auth;
-      this.set('user', user);
-      return session;
+      this.set('response', auth);
+      return auth;
     })
   },
 
@@ -50,7 +46,7 @@ export default Service.extend(ObjectQueryManager, {
    */
   delete() {
     return this.get('apollo').mutate({ mutation: deleteSession }, "deleteSession").then(() => {
-      this.set('user', null);
+      this.set('response', null);
     });
   },
 });

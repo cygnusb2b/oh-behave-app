@@ -1,0 +1,3 @@
+mutation deleteContentQuery($input: ModelIdInput!) {
+	deleteContentQuery(input: $input)
+}

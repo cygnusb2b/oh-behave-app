@@ -4,6 +4,7 @@ import LoadingMixin from 'oh-behave-app/mixins/loading-mixin';
 
 import query from 'oh-behave-app/gql/queries/content-query';
 import updateContentQuery from 'oh-behave-app/gql/mutations/update-content-query';
+import deleteContentQuery from 'oh-behave-app/gql/mutations/delete-content-query';
 
 export default Route.extend(RouteQueryManager, LoadingMixin, {
   model({ query_id }) {
@@ -40,6 +41,17 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
         .finally(() => this.hideLoading())
       ;
 
+    },
+
+    delete(id, routeName) {
+      this.showLoading();
+      const mutation = deleteContentQuery;
+      const variables = { input: { id } };
+      return this.get('apollo').mutate({ mutation, variables }, 'deleteContentQuery')
+        .then(() => this.transitionTo(routeName))
+        .catch(e => this.get('graphErrors').show(e))
+        .finally(() => this.hideLoading())
+      ;
     },
   },
 });

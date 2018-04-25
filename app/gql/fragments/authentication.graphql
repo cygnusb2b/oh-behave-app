@@ -1,0 +1,11 @@
+#import 'oh-behave-app/gql/fragments/session'
+#import 'oh-behave-app/gql/fragments/user'
+
+fragment AuthenticationFragment on Authentication {
+  session {
+    ...SessionFragment
+  }
+  user {
+    ...UserFragment
+  }
+}

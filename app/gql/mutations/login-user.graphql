@@ -1,9 +1,7 @@
-#import 'oh-behave-app/gql/fragments/session'
+#import 'oh-behave-app/gql/fragments/authentication'
 
 mutation loginUser($input: LoginInput!) {
 	loginUser(input: $input) {
-		session {
-			...SessionFragment
-		}
+		...AuthenticationFragment
 	}
 }

@@ -9,10 +9,6 @@ import allProperties from 'oh-behave-app/gql/queries/all-properties';
 export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManager, {
   session: inject(),
 
-  beforeModel() {
-    return this._loadCurrentUser();
-  },
-
   model() {
     const query = allProperties;
     const pagination = { first: 100 };
@@ -24,21 +20,9 @@ export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManag
     ;
   },
 
-  sessionAuthenticated() {
-    this._super(...arguments);
-    this._loadCurrentUser().catch((e) => {
-      this.get('graphErrors').show(e);
-      this.get('session').invalidate();
-    });
-  },
-
   setupController(controller, model) {
     controller.set('session', this.get('session'));
     this._super(controller, model);
-  },
-
-  _loadCurrentUser() {
-    return this.get('user').load();
   },
 
   /**

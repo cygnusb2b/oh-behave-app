@@ -37,7 +37,7 @@ export default Component.extend({
      * Fetches more results using the observable from the original query.
      * @see https://www.apollographql.com/docs/react/features/pagination.html
      */
-    fetchMore() {
+    async fetchMore() {
       this.set('isFetching', true);
       this.sendEvent('on-fetch-start');
       const observable = this.get('query');
@@ -60,20 +60,21 @@ export default Component.extend({
       };
       const pagination = assign({}, observable.variables.pagination, { after: endCursor });
       const variables = { pagination };
-      observable.fetchMore({ updateQuery, variables }).then((result) => {
+      try {
+        const result = await observable.fetchMore({ updateQuery, variables });
         this.sendEvent('on-fetch-success', result);
         return result;
-      }).catch((e) => {
+      } catch (e) {
         const evt = 'on-fetch-error';
         if (this.hasEvent(evt)) {
           this.sendEvent(evt, e);
         } else {
           throw e;
         }
-      }).finally(() => {
+      } finally {
         this.set('isFetching', false);
         this.sendEvent('on-fetch-end');
-      });
+      }
     },
   },
 });

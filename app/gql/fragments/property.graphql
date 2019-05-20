@@ -4,6 +4,7 @@ fragment PropertyFragment on Property {
   key
   baseVersion
   userSource
+  stack
   createdAt
   updatedAt
 }

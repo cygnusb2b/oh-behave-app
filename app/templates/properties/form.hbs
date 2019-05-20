@@ -15,6 +15,7 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-4">
     <div class="form-group mb-3 mb-md-0">
@@ -60,3 +61,22 @@
     </div>
   </div>
 </div>
+
+{{#if (eq model.baseVersion '4')}}
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group mb-3 mb-md-0">
+        <label for="property.stack">Base Stack</label>
+        {{#power-select
+          options=sourceManager.stacks
+          selected=model.stack
+          closeOnSelect=true
+          searchEnabled=false
+          onchange=(action (mut model.stack)) as |opt|}}
+            {{opt}}
+        {{/power-select}}
+        <small id="property.stack.help" class="form-text text-muted">Select the Base4 infrastructure stack.</small>
+      </div>
+    </div>
+  </div>
+{{/if}}

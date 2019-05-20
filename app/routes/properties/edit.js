@@ -15,8 +15,8 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
     update(model) {
       this.showLoading();
       const mutation = updateProperty;
-      const { id, name, key, baseVersion, userSource } = model;
-      const payload = { name, key, baseVersion, userSource };
+      const { id, name, key, baseVersion, userSource, stack } = model;
+      const payload = { name, key, baseVersion, userSource, stack };
       const input = { id, payload };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateProperty')

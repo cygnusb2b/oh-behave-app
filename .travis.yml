@@ -1,29 +1,93 @@
----
 language: node_js
-node_js:
-  - "6"
+node_js: "10.15"
+cache: yarn
 
-sudo: false
-dist: trusty
+_production-env: &production-env
+  ENVIRONMENT: production
+  RANCHER_CLUSTERID: c-gxsr7
 
-addons:
-  chrome: stable
+# _staging-env: &staging-env
+#   ENVIRONMENT: staging
+#   RANCHER_CLUSTERID: c-rc5kp
 
-cache:
-  yarn: true
+_production-job: &production-job
+  stage: production
+  name: SERVICE_NAME
+  script: scripts/deploy.js SERVICE_NAME
+  install: skip
+  env:
+    <<: *production-env
 
-env:
-  global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
+# _staging-job: &staging-job
+#   stage: staging
+#   name: SERVICE_NAME
+#   script: scripts/deploy.js SERVICE_NAME
+#   install: skip
+#   env:
+#     <<: *staging-env
 
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
+stages:
+  - name: test
 
-install:
-  - yarn install --non-interactive
+  - name: production-started
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-finished
+    if: tag =~ /^v\d+\.\d+\.\d+$/
 
-script:
-  - yarn lint:js
-  - yarn test
+  # - name: staging-started
+  #   if: tag is present
+  # - name: staging
+  #   if: tag is present
+  # - name: staging-finished
+  #   if: tag is present
+
+jobs:
+  include:
+    - stage: test
+      env:
+        NODE_ENV: test
+
+    - stage: production-started
+      name: Deployment Started
+      script: npx @base-cms/website-deployment-tool notify-started
+      install: skip
+      env:
+        <<: *production-env
+
+    # - stage: staging-started
+    #   name: Deployment Started
+    #   script: npx @base-cms/website-deployment-tool notify-started
+    #   install: skip
+    #   env:
+    #     <<: *staging-env
+
+    #############################
+    # vvv ADD SERVICES HERE vvv #
+    #############################
+
+    - <<: *production-job
+      name: Manage Service
+      script: scripts/deploy.js manage
+    # - <<: *staging-job
+    #   name: Manage Service
+    #   script: scripts/deploy.js manage
+
+    #############################
+    # ^^^ ADD SERVICES HERE ^^^ #
+    #############################
+
+    - stage: production-finished
+      name: Deployment Finished
+      script: npx @base-cms/website-deployment-tool notify-finished
+      install: skip
+      env:
+        <<: *production-env
+
+    # - stage: staging-finished
+    #   name: Deployment Finished
+    #   script: npx @base-cms/website-deployment-tool notify-finished
+    #   install: skip
+    #   env:
+    #     <<: *staging-env
